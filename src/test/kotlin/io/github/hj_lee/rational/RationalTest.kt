@@ -16,13 +16,23 @@ internal class RationalTest {
         assertEquals(2, (2 over -4).denominator.toInt())
         assertEquals(-1, (-2 over 4).numerator.toInt())
         assertEquals(2, (-2 over 4).denominator.toInt())
-        assertEquals(1 over 2, 0.5.r)
         assertEquals(1 over 4, 1 over 2 over 2)
+        assertEquals(1, (3 over 2).toInt())
+    }
+    @Test
+    fun doubleConversion() {
+        assertEquals(1 over 2, 0.5.r)
         assertEquals(2 over 1, 1 over 0.5)
         assertEquals(4 over 1, 2.0 over 0.5)
         assertEquals(0.5, (1 over 2).toDouble())
         assertEquals(-0.5, (-1 over 2).toDouble())
-        assertEquals(1, (3 over 2).toInt())
+        assertEquals(-1 over 2, (-0.5).r)
+
+        assertEquals(1 over (2.toBigInteger().pow(100)), (1.0 / Math.pow(2.0, 100.0)).r)
+        assertEquals(2.toBigInteger().pow(100).r, Math.pow(2.0, 100.0).r)
+
+        assertEquals(((1 over 2) + (1 over 4)), (0.5 + 0.25).r)
+        assertEquals((0.5 + 0.25), ((1 over 2) + (1 over 4)).toDouble())
     }
 
     @Test

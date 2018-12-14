@@ -6,12 +6,21 @@ import java.math.BigInteger
 fun BigInteger.toRational() = Rational.Companion(this, BigInteger.ONE)
 fun Long.toRational() = Rational(this, 1L)
 fun Int.toRational() = Rational(this, 1)
+
+
+private const val BUT_SIGN_BIT = (-1L).ushr(1)
+private const val FRACTION_MASK = (-1L).ushr(12)
+private const val FRACTION_1 = 1L.shl(52)
 fun Double.toRational(): Rational {
     require(this.isFinite())
     require(!this.isNaN())
-    // TODO proper conversion
-    val bd = this.toBigDecimal()
-    return Rational(bd.unscaledValue(), 10.toBigInteger().pow(bd.scale()))
+    if (this == 0.0) return Rational.ZERO
+    val bits = this.toBits()
+    val exponent = bits.and(BUT_SIGN_BIT).ushr(52) - 1023 - 52
+    val fraction = bits.and(FRACTION_MASK).or(FRACTION_1)
+    val abs = if (exponent >=0 ) Rational(fraction.toBigInteger() * 2.toBigInteger().pow(exponent.toInt()), BigInteger.ONE)
+    else Rational(fraction.toBigInteger(), 2.toBigInteger().pow(-exponent.toInt()))
+    return if (bits < 0) -abs else abs
 }
 
 fun Float.toRational() = this.toDouble().toRational()
