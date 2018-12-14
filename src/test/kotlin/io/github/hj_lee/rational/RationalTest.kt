@@ -17,15 +17,32 @@ internal class RationalTest {
         assertEquals(-1, (-2 over 4).numerator.toInt())
         assertEquals(2, (-2 over 4).denominator.toInt())
         assertEquals(1 over 2, 0.5.r)
+        assertEquals(1 over 4, 1 over 2 over 2)
+        assertEquals(2 over 1, 1 over 0.5)
+        assertEquals(4 over 1, 2.0 over 0.5)
+        assertEquals(0.5, (1 over 2).toDouble())
+        assertEquals(-0.5, (-1 over 2).toDouble())
+        assertEquals(1, (3 over 2).toInt())
     }
 
     @Test
     fun compareTo() {
-        val r1o2 = Rational(1, 2)
-        val r1o3 = Rational(1, 3)
-        val r2o3 = Rational(2, 3)
-        assert(r1o2 > r1o3)
-        assert(r1o2 < r2o3)
-        assert(r1o2 == Rational(2,4))
+        assert(1 over 2 > 1 over 3)
+        assert(1 over 2 < 2 over 3)
+        assert(1 over 2 == 2 over 4)
+        assert(1 over 2 > -1 over 2)
+    }
+
+    @Test
+    fun basicOperator() {
+        assertEquals(1 over 4, (1 over 2) * (1 over 2))
+        assertEquals(1 over 4, 1.r / 4)
+        assertEquals(5 over 6, 1.r/2 + 1.r/3)
+        assertEquals(1 over 6, 1.r/2 - 1.r/3)
+        assertEquals(1 over 6, (1.r/2) * (1.r/3))
+        assertEquals(3 over 2, (1.r/2) / (1.r/3))
+        assertEquals(-1 over 2, -(1.r/2))
+        assertEquals(1 over 4, ((-1).r/2) * (-1 over 2))
+        assertEquals(2 over 1, (1 over 2).inv())
     }
 }
