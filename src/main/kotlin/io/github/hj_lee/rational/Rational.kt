@@ -70,7 +70,7 @@ class Rational private constructor(val numerator: BigInteger, val denominator: B
     }
 
     override fun toString(): String =
-        if (denominator == BigInteger.ONE) "$numerator" else "($numerator over $denominator)"
+        if (denominator == BigInteger.ONE) "$numerator" else "($numerator/$denominator)"
 
 
 

@@ -79,7 +79,7 @@ class Rational private constructor(val numerator: Long, val denominator: Long) :
     }
 
     override fun toString(): String =
-        if (denominator == 1L) "$numerator" else "($numerator over $denominator)"
+        if (denominator == 1L) "$numerator" else "($numerator/$denominator)"
 
 
     override fun compareTo(other: Rational): Int {
