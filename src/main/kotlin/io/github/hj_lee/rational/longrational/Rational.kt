@@ -1,4 +1,4 @@
-package io.github.hj_lee.longrational
+package io.github.hj_lee.rational.longrational
 
 import java.io.Serializable
 import java.math.BigInteger

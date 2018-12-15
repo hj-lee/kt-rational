@@ -1,4 +1,4 @@
-package io.github.hj_lee.longrational
+package io.github.hj_lee.rational.longrational
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
