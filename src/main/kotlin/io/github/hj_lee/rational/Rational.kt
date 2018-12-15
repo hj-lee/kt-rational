@@ -49,6 +49,11 @@ infix fun Long.over(d: Long) = Rational(this, d)
 
 infix fun Number.over(d: Number) = (this.r / d.r)
 
+operator fun Number.times(r: Rational) = this.r * r
+operator fun Number.div(r: Rational) = this.r / r
+operator fun Number.plus(r: Rational) = this.r + r
+operator fun Number.minus(r: Rational) = this.r - r
+
 class Rational private constructor(val numerator: BigInteger, val denominator: BigInteger) : Number(),
     Comparable<Rational>, Serializable {
     companion object {

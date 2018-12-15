@@ -53,6 +53,11 @@ internal class RationalTest {
         assertEquals(3 over 2, (1.r/2) / (1.r/3))
         assertEquals(-1 over 2, -(1.r/2))
         assertEquals(1 over 4, ((-1).r/2) * (-1 over 2))
-        assertEquals(2 over 1, (1 over 2).inv())
+        assertEquals(2 over 1, (1.r / 2).inv())
+
+        assertEquals(2 over 3,2 / 3.r)
+        assertEquals(1 over 1, 2 * (1 over 2))
+        assertEquals(3 over 2, 1 + 1 / 2.r)
+        assertEquals(1 over 2, 1 - 1 / 2.r)
     }
 }
