@@ -49,7 +49,7 @@ infix fun Long.over(d: Long) = Rational(this, d)
 
 infix fun Number.over(d: Number) = (this.r / d.r)
 
-data class Rational private constructor(val numerator: BigInteger, val denominator: BigInteger) : Number(),
+class Rational private constructor(val numerator: BigInteger, val denominator: BigInteger) : Number(),
     Comparable<Rational>, Serializable {
     companion object {
         val ZERO = Rational(BigInteger.ZERO, BigInteger.ONE)
@@ -66,6 +66,7 @@ data class Rational private constructor(val numerator: BigInteger, val denominat
 
     override fun toString(): String =
         if (denominator == BigInteger.ONE) "$numerator" else "($numerator over $denominator)"
+
 
 
     override fun compareTo(other: Rational): Int {
@@ -102,6 +103,8 @@ data class Rational private constructor(val numerator: BigInteger, val denominat
 
     fun toBigInteger() = numerator / denominator
 
+    // Number functions
+
     override fun toByte() = toBigInteger().toByte()
 
     override fun toChar() = toBigInteger().toChar()
@@ -115,4 +118,24 @@ data class Rational private constructor(val numerator: BigInteger, val denominat
     override fun toDouble() = numerator.toDouble() / denominator.toDouble()
 
     override fun toFloat() = toDouble().toFloat()
+
+    ////////
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Rational
+
+        if (numerator != other.numerator) return false
+        if (denominator != other.denominator) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = numerator.hashCode()
+        result = 31 * result + denominator.hashCode()
+        return result
+    }
 }
